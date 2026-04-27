@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>yt-downloader</title>
+  <script src="../static/scripts/script.js" defer></script>
+  <link rel="shortcut icon" href="../static/imgs/icon.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="../static/styles/themes.css">
+  <link rel="stylesheet" href="../static/styles/base.css">
+  <link rel="stylesheet" href="../static/styles/progress.css">
+</head>
+
+<body>
+  <div id="app" data-t="dark">
+
+    <nav>
+      <div class="nav-brand">
+        <div class="nav-icon">
+          <img src="../static/imgs/icon.svg" alt="">
+        </div>
+        yt-downloader
+      </div>
+      <div class="nav-right">
+        <button class="sys-btn" id="sysBtn" onclick="toggleAuto()">Auto</button>
+        <select class="theme-select" id="themeSel" onchange="setTheme(this.value)">
+          <optgroup label="VS Code">
+            <option value="dark">VS Dark</option>
+            <option value="light">VS Light</option>
+            <option value="onedark">One Dark Pro</option>
+          </optgroup>
+          <optgroup label="Popular">
+            <option value="monokai">Monokai</option>
+            <option value="dracula">Dracula</option>
+            <option value="nord">Nord</option>
+            <option value="tokyo">Tokyo Night</option>
+            <option value="catppuccin">Catppuccin</option>
+            <option value="gruvbox">Gruvbox</option>
+            <option value="palenight">Palenight</option>
+            <option value="ayu">Ayu Mirage</option>
+            <option value="rosepine">Rosé Pine</option>
+            <option value="material">Material</option>
+            <option value="cobalt">Cobalt2</option>
+          </optgroup>
+          <optgroup label="Light">
+            <option value="github">GitHub</option>
+            <option value="solarized">Solarized Dark</option>
+            <option value="tomorrow">Tomorrow</option>
+            <option value="arc">Arc</option>
+          </optgroup>
+        </select>
+      </div>
+    </nav>
+
+    <main>
+      <div class="grid">
+
+        <div>
+          <div class="panel">
+            <div class="ph">
+              <div class="dot"></div><span>Fetch video</span>
+            </div>
+            <div class="pb">
+              <label class="lbl">YouTube URL</label>
+              <input class="inp" id="urlInp" placeholder="https://youtube.com/watch?v=..." />
+              <button class="btn-p" id="fetchBtn" onclick="doFetch()">Fetch Info</button>
+              <div class="sgrid" id="sgrid" style="display:none">
+                <div class="stat">
+                  <div class="sv" id="sRes">—</div>
+                  <div class="sl">Max res</div>
+                </div>
+                <div class="stat">
+                  <div class="sv" id="sDur">—</div>
+                  <div class="sl">Duration</div>
+                </div>
+                <div class="stat">
+                  <div class="sv" id="sFmt">—</div>
+                  <div class="sl">Formats</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="histPanel" style="display:none">
+            <div class="ph">
+              <div class="dot" style="background:var(--ac2)"></div><span>Recent</span>
+            </div>
+            <div class="pb" id="histBody"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel" id="videoPanel" style="display:none">
+            <div class="tp" id="tp">
+              <img id="thumb" src="" alt="" />
+              <div class="tp-bar">
+                <span class="dur-tag" id="tDur"></span>
+                <span class="max-tag" id="tMax"></span>
+              </div>
+            </div>
+            <div class="pb">
+              <div class="vt" id="vTitle"></div>
+              <div class="vs" id="vSub"></div>
+              <div class="div"></div>
+
+              <div class="sl-lbl" style="margin-bottom:7px">Quality</div>
+              <div class="cgrid" id="cgrid"></div>
+              <div class="div"></div>
+
+              <div class="sl-lbl" style="margin-bottom:7px">Format</div>
+              <div class="frow">
+                <div class="fmt sel" onclick="setFmt('mp4',this)">MP4</div>
+                <div class="fmt" onclick="setFmt('webm',this)">WebM</div>
+                <div class="fmt" onclick="setFmt('audio',this)">Audio</div>
+              </div>
+              <div class="div"></div>
+
+              <button class="dl-btn" id="dlBtn" onclick="doDl()">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Download
+              </button>
+
+              <div class="prog-wrap" id="progWrap">
+                <div class="prog-top">
+                  <span class="prog-msg" id="progMsg">Starting…</span>
+                  <span class="prog-pct" id="progPct">0%</span>
+                </div>
+                <div class="prog-bar">
+                  <div class="prog-fill" id="progFill"></div>
+                </div>
+                <div class="prog-meta" id="progMeta"></div>
+              </div>
+              <div class="status" id="status"></div>
+            </div>
+          </div>
+
+          <div class="panel" id="infoPanel" style="display:none">
+            <div class="ph">
+              <div class="dot" style="background:var(--ac2)"></div><span>Details</span>
+            </div>
+            <div class="pb" id="infoBody"></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+</body>
+
+</html>

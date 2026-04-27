@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+.env
+.venv
+venv/
+env/
+
+# Flask stuff
+instance/
+.webassets-cache
+
+# Environment variables
+.env.*
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# Node (if frontend exists)
+node_modules/
+dist/
+build/
+
+# Temporary files
+*.sqlite3
+*.db
